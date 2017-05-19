@@ -57,11 +57,12 @@
             // 
             // printPreviewControl1
             // 
+            this.printPreviewControl1.AutoZoom = false;
             this.printPreviewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.printPreviewControl1.Location = new System.Drawing.Point(0, 0);
             this.printPreviewControl1.Name = "printPreviewControl1";
             this.printPreviewControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.printPreviewControl1.Size = new System.Drawing.Size(700, 257);
+            this.printPreviewControl1.Size = new System.Drawing.Size(759, 257);
             this.printPreviewControl1.TabIndex = 2;
             this.printPreviewControl1.TabStop = false;
             this.printPreviewControl1.Zoom = 1D;
@@ -80,7 +81,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.printPreviewControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(700, 322);
+            this.splitContainer1.Size = new System.Drawing.Size(759, 322);
             this.splitContainer1.SplitterDistance = 61;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -89,7 +90,7 @@
             this.metroTile1.ActiveControl = null;
             this.metroTile1.Location = new System.Drawing.Point(3, 3);
             this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(90, 52);
+            this.metroTile1.Size = new System.Drawing.Size(131, 55);
             this.metroTile1.TabIndex = 0;
             this.metroTile1.Text = "Print";
             this.metroTile1.UseSelectable = true;
@@ -99,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 402);
+            this.ClientSize = new System.Drawing.Size(799, 402);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormPrintOrderMission";
             this.Text = "Print Mission Order";

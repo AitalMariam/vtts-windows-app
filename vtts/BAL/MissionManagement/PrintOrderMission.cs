@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using vtts.Presentation.PrintOrderMission;
+using vtts.Resources;
+using System.Drawing.Imaging;
 
 namespace vtts.BAL.MissionManagement
 {
@@ -95,8 +97,8 @@ namespace vtts.BAL.MissionManagement
                     // NOTE: When we want to insert text, then we've to do it through creating paragraph
                     //doc.Add(new Paragraph("Hello World :"));
                     PdfFile file = new PdfFile();
-                    // Add Image Header 
-                    file.AddImage(doc,650f, 100f, 30f, doc.PageSize.Width - 400f, doc.PageSize.Height - 65f);
+                    // Add Image Header  (HeaderImage.Header, ImageFormat.Bmp);
+                    file.AddImage(doc,650f, 100f, 30f, doc.PageSize.Width - 400f, doc.PageSize.Height - 65f,HeaderImage.Header,ImageFormat.Bmp);
                     // Ordre , Date 
                     file.CreateText(doc, writer, Ordre, doc.PageSize.Width - 250f, doc.PageSize.Height - 100f, false, true);
                     file.CreateText(doc, writer, "Date : " + Date.ToShortDateString(), doc.PageSize.Width - 250f, doc.PageSize.Height - 120f, false, true);
@@ -111,105 +113,26 @@ namespace vtts.BAL.MissionManagement
 
                     //
 
-
-                    // First :
-                    ///////
-                    //int YPos = 620;
-                    //int k = 15;
-                    //List<Object> Cell1 = new List<object>();
-                    //Cell1.Add(Mensieur);
-                    //Cell1.Add("Matricule : " + Matricule);
-                    //file.AddTableCells(writer, Cell1, 50, YPos);
-
-
-
-                    //List<Object> Cell2 = new List<object>();
-                    //Cell2.Add("Categorie : " + Category);
-                    //file.AddTableCells(writer, Cell2, 50, YPos - (k ));
-
-
-                    //List<Object> Cell3 = new List<object>();
-                    //Cell3.Add("Affectation : " + Affectation);
-                    //file.AddTableCells(writer, Cell3, 50, YPos - (k * 2));//2
-
-                    //List<Object> Cell4 = new List<object>();
-                    //Cell4.Add("De se rendre à : " + Place);
-                    //file.AddTableCells(writer, Cell4, 50, YPos - (k * 3));
-
-                    //List<Object> Cell5 = new List<object>();
-                    //Cell5.Add(Theme);
-                    //file.AddTableCells(writer, Cell5, 50, YPos - (k * 4));
-
-
-                    //List<Object> Cell6 = new List<object>();
-                    //Cell6.Add("Date de Depart : " + DepartureDate);
-                    //Cell6.Add("Heure : " + DepartureHour);
-                    //file.AddTableCells(writer, Cell6, 50, YPos - (k * 5));
-
-                    //List<Object> Cell7 = new List<object>();
-                    //Cell7.Add("Date de Retour : " + ReturnDate);
-                    //Cell7.Add("Heure  " + ReturnHour);
-                    //file.AddTableCells(writer, Cell7, 50, YPos - (k * 6));
-
-                    //List<Object> Cell8 = new List<object>();
-                    //Cell8.Add("L'intéressé (e) utilisera : ");
-                    //file.AddTableCells(writer, Cell8, 50, YPos - (k * 7));
-
-
-                    ////////List<Object> Cell9 = new List<object>();
-                    ////////Cell9.Add("\t\t\tTransport Public");
-                    ////////Cell9.Add("\t\t\tVoiture de Mission\n\nMarque : \nN° de plaque : ");
-                    ////////Cell9.Add("\t\t\tVoiture Personnelle\n\nMarque : \nPuissance Fiscale : \nN° de plaque : ");
-                    ////////file.AddTableCells(writer, Cell9, 50, YPos - (k * 8));
-                    ////////////////////
-                    //List<Object> Cell9 = new List<object>();
-                    //if (TransportType == "PublicTransport")
-                    //{
-                    //    Cell9.Add("X)\n\nTransport Public");
-                    //    Cell9.Add("..)\n\nVoiture de Mission\n\nMarque : \nN° de plaque : ");
-                    //    Cell9.Add("..)\n\nVoiture Personnelle\n\nMarque : \nPuissance Fiscale : \nN° de plaque : ");
-                    //    file.AddTableCells(writer, Cell9, 50, YPos - (k * 8));
-                    //}
-                    //if (TransportType == "MissionCar")
-                    //{
-                    //    Cell9.Add("..)\n\nTransport Public");
-                    //    Cell9.Add("X)\n\nVoiture de Mission\n\nMarque : " + MissionCarmark + "\nN° de plaque : " + MissionCarPlatNumber);
-                    //    Cell9.Add("..)\n\nVoiture Personnelle\n\nMarque : \nPuissance Fiscale : \nN° de plaque : ");
-                    //    file.AddTableCells(writer, Cell9, 50, YPos - (k * 8));
-                    //}
-                    //if (TransportType == "PersonalCar")
-                    //{
-                    //    Cell9.Add("..)\n\nTransport Public");
-                    //    Cell9.Add("..)\n\nVoiture Personnelle\n\nMarque : \nPuissance Fiscale : \nN° de plaque : ");
-                    //    Cell9.Add("X)\n\nVoiture Personnelle\n\nMarque : " + PersonalCarmark + "\nPuissance Fiscale : " + PersonalCarPlatNumber + "\nN° de plaque : ");
-                    //    file.AddTableCells(writer, Cell9, 50, YPos - (k * 8));
-                    //}
-
-                    ////Table Footer
-                    //List<Object> Cell10 = new List<object>();
-                    //Cell10.Add("Le Directeur d'Ismontic Tanger : \n\n" + FirstPersonne);
-                    //Cell10.Add(Region + "\n\n" + SecondePersonne);
-                    //file.AddTableCells(writer, Cell10, 50, YPos - (k * 16));
+                    
 
                     // 
                     PdfPTable table = new PdfPTable(3);
                     // Row 1 ( Mensieur , Matricule )
                     PdfPCell cell = new PdfPCell(new Phrase(Mensieur)) { Colspan = 2 };
                     cell.MinimumHeight = 30f;
-                    
-                    
+
                     PdfPCell cell2 = new PdfPCell(new Phrase("Matricule : " + Matricule));
                     cell2.MinimumHeight = 30f;
                     table.AddCell(cell);
                     table.AddCell(cell2);
 
                     // Row 2 (Categorie)
-                    PdfPCell cell3 = new PdfPCell(new Phrase("Categorie : " + Category)) { Colspan = 3 } ;
+                    PdfPCell cell3 = new PdfPCell(new Phrase("Categorie : " + Category)) { Colspan = 3 };
                     cell3.MinimumHeight = 30f;
                     table.AddCell(cell3);
 
                     //Row 3 (Affectation)
-                    PdfPCell cell4 = new PdfPCell(new Phrase("Affectation : " + Affectation, new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD , BaseColor.BLACK))) { Colspan = 3 };
+                    PdfPCell cell4 = new PdfPCell(new Phrase("Affectation : " + Affectation, new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK))) { Colspan = 3 };
                     cell3.MinimumHeight = 30f;
                     table.AddCell(cell4);
 
@@ -223,7 +146,7 @@ namespace vtts.BAL.MissionManagement
                     cell6.MinimumHeight = 30f;
                     table.AddCell(cell6);
 
-                    PdfPCell cell7 = new PdfPCell(new Phrase("Heure : " + DepartureHour)) ;
+                    PdfPCell cell7 = new PdfPCell(new Phrase("Heure : " + DepartureHour));
                     cell7.MinimumHeight = 30f;
                     table.AddCell(cell7);
 
@@ -287,9 +210,9 @@ namespace vtts.BAL.MissionManagement
                         table.AddCell(cell13);
                     }
 
-                    //PdfPCell cell14 = new PdfPCell(new Phrase("Le Directeur d'Ismontic Tanger : " + FirstPersonne)) { Colspan = 3 };
-                    //cell14.MinimumHeight = 50f;
-                    //table.AddCell(cell14);
+                    PdfPCell cell14 = new PdfPCell(new Phrase("Le Directeur d'Ismontic Tanger : " + FirstPersonne)) { Colspan = 3 };
+                    cell14.MinimumHeight = 50f;
+                    table.AddCell(cell14);
                     PdfContentByte cb = writer.DirectContent;
                     table.TotalWidth = 500f;
                     table.WriteSelectedRows(0, -1, 50, 600, cb);

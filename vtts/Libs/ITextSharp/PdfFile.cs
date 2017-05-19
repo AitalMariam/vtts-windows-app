@@ -55,31 +55,31 @@ namespace vtts.Presentation.PrintOrderMission
         }
 
         /// <summary>
-        /// Insert image to the pdf file
+        /// Convert and Insert Image at specified Positions
         /// </summary>
-        /// <param name="doc"> Document Name</param>
-        /// <param name="ImageInstance">Image Instance</param>
-        /// <param name="fitwidth"> the width to fit</param>
-        /// <param name="fitheight">the height to ft</param>
-        /// <param name="Percent">the scaling percentage</param>
-        /// <param name="absoluteX">the absolute position to the image : X</param>
-        /// <param name="absoluteY">the absolute position to the image : Y</param>
-        public void AddImage(Document doc,float fitwidth , float fitheight,float Percent,float absoluteX , float absoluteY)
+        /// <param name="doc">PDF Document</param>
+        /// <param name="fitwidth">width</param>
+        /// <param name="fitheight">Height</param>
+        /// <param name="Percent">Image Percent</param>
+        /// <param name="absoluteX">X : Position</param>
+        /// <param name="absoluteY">Y : Position</param>
+        /// <param name="ImageFile">Image ressource</param>
+        /// <param name="imageFormatToConvert">Format to convert</param>
+        public void AddImage(Document doc, float fitwidth, float fitheight, float Percent, float absoluteX, float absoluteY, System.Drawing.Image ImageFile, ImageFormat imageFormatToConvert)
         {
-            //  iTextSharp.text.Image image =  iTextSharp.text.Image.GetInstance(ImageInstance);
-            //var ms = new MemoryStream();
-            //ms.Position = 0;
-            //ResourceImage.Header.Save(ms, ImageFormat.Bmp);
-            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(HeaderImage.Header, ImageFormat.Bmp);
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(ImageFile, imageFormatToConvert);
 
-            
             image.ScaleToFit(fitwidth, fitheight);
             image.ScalePercent(Percent);
             image.SetAbsolutePosition(absoluteX, absoluteY);
             doc.Add(image);
         }
-
-
+        /// <summary>
+        /// Convert Image Format
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
         public static Stream ToStream(System.Drawing.Image image, ImageFormat format)
         {
             var stream = new System.IO.MemoryStream();
@@ -88,7 +88,24 @@ namespace vtts.Presentation.PrintOrderMission
             return stream;
         }
 
-
+        /// <summary>
+        /// Insert Image at specified Position (X , Y)
+        /// </summary>
+        /// <param name="doc">Pdf Document</param>
+        /// <param name="fitwidth">Width</param>
+        /// <param name="fitheight">Height</param>
+        /// <param name="Percent">Image Percent</param>
+        /// <param name="absoluteX">X : Position</param>
+        /// <param name="absoluteY">Y : Position</param>
+        /// <param name="InstanceImage">Image Directory</param>
+        public void InsertImage(Document doc, float fitwidth , float fitheight,float Percent , float absoluteX , float absoluteY, string InstanceImage)
+        {
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(InstanceImage);
+            image.ScaleToFit(fitwidth, fitheight);
+            image.ScalePercent(Percent);
+            image.SetAbsolutePosition(absoluteX, absoluteY);
+            doc.Add(image);
+        }
 
 
         /// <summary>
@@ -272,6 +289,9 @@ namespace vtts.Presentation.PrintOrderMission
         }
 
         
+        
+
+      
       
     }
 }
