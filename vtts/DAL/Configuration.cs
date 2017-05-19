@@ -18,6 +18,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using vtts.Entities.ModuleManagement;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ModelContext>
     {
@@ -176,9 +177,7 @@
             RoleAdmin.Authorizations.Add(InstitutionAutorization);
 
 
-            //
             //Add Dirrector Autorization
-            //
             RoleDirector.Authorizations = new List<Authorization>();
             RoleDirector.Authorizations.Add(CityAutorization);
             RoleDirector.Authorizations.Add(CountryAutorization);
@@ -227,14 +226,18 @@
             RoleAdmin.Authorizations.Add(ThemeCategoryAutorization);
             RoleAdmin.Authorizations.Add(RegionAutorization);
             RoleAdmin.Authorizations.Add(MissionAutorization);
+            Authorization PrecisionAutorization = new Authorization();
+            PrecisionAutorization.BusinessEntity = typeof(Precision).FullName;
+            RoleAdmin.Authorizations.Add(PrecisionAutorization);
 
+            Authorization PriorAutorization = new Authorization();
+            PriorAutorization.BusinessEntity = typeof(Prior).FullName;
+            RoleAdmin.Authorizations.Add(PriorAutorization);
 
+            Authorization PrecisionContentAutorization = new Authorization();
+            PrecisionAutorization.BusinessEntity = typeof(PrecisionContent).FullName;
+            RoleAdmin.Authorizations.Add(PrecisionContentAutorization);
 
-            //     // Trainee Autorization
-            //     RoleTrainee.Authorizations = new List<Authorization>();
-            //     RoleTrainee.Authorizations.Add(GroupAuthorisation);
-            //     RoleTrainee.Authorizations.Add(TrianeeAuthorisation);
-            //     context.SaveChanges();
 
             //     //
             //     //-- Giwn Users
@@ -255,12 +258,13 @@
                          new MenuItemApplication { Id = 1, Code = "Configuration", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "إعدادات", English = "Configuration", French = "Configuration" } },
                          new MenuItemApplication { Id = 2, Code = "Admin", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير البرنامج", English = "Admin", French = "Administration" } },
                          new MenuItemApplication { Id = 3, Code = "Root", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "مصمم اليرنامج", English = "Application Constructor", French = "Rélisateur de l'application" } },
-                         new MenuItemApplication { Id = 4, Code = "Trainee", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "المتدرب", English = "Trainee Management", French = "Gestion Des Stagiaire" } },
+                         new MenuItemApplication { Id = 4, Code = "Trainee", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "المتدرب", English = "Trainee Management", French = "Stagiaires" } },
                          new MenuItemApplication { Id = 5, Code = "InstitutionManagement", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير المؤسسة", English = "Institution Management", French = "Gestion de l'établissement" } },
                          new MenuItemApplication { Id = 6, Code = "HRManagement", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير الموارد البشرية", English = "RH Management", French = "Gestion RH" } },
-                         new MenuItemApplication { Id = 8, Code = "AdvanceManagement", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير الترقيات", English = "Advance Management", French = "Gestion D'Advance" } },
-                         new MenuItemApplication { Id = 7, Code = "MissionManagement", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير المهام", English = "Mission Management", French = "Gestion De Mission" } }
-                              );
+                         new MenuItemApplication { Id = 8, Code = "AdvanceManagement", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير الترقيات", English = "Advance Management", French = "Aavancements" } },
+                         new MenuItemApplication { Id = 8, Code = "Staffs", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير المستخدمين", English = "Staffs management", French = "Personnels" } },
+                         new MenuItemApplication { Id = 7, Code = "MissionManagement", Title = new Gwin.Entities.MultiLanguage.LocalizedString { Arab = "تدبير المهام", English = "Mission Management", French = "Missions" } }
+                      );
 
 
    
@@ -400,29 +404,78 @@
               r => r.Reference,
               new Region()
               {
-                  Reference = "Tangier-Tetouan",
-                  Name = new LocalizedString { Arab = "طنجة تطوان", French = "Tanger-Tétouan", English = "Tangier Tetouan" },
-                  Ordre = 16,
+                  Reference = "Grand-Casablanca-Nord",
+                  Name = new LocalizedString { Arab = "", French = "Grand Casablanca Nord", English = "Grand Casablanca Nord" }
               },
                 new Region()
                 {
-                    Reference = "Taza-Al-Hoceima-Taounate",
-                    Name = new LocalizedString { Arab = "تازة الحسيمة تاونات", French = "Taza-Al Hoceïma-Taounate", English = "Taza-Al Hoceima-Taounate" },
-                    Ordre = 15,
+                    Reference = "Grand-Casablanca-Sud",
+                    Name = new LocalizedString { Arab = "", French = "Grand Casablanca Sud", English = "Grand Casablanca Sud" }
                 },
                  new Region()
                  {
-                     Reference = "Grand-asablanca",
-                     Name = new LocalizedString { Arab = "الدار البيضاء", French = "Grand Casablanca", English = "Grand Casablanca" },
-                     Ordre = 5,
+                     Reference = "Tensift Atlantique",
+                     Name = new LocalizedString { Arab = "", French = "Tensift Atlantique", English = "Tensift Atlantique" }
                  },
                   new Region()
                   {
-                      Reference = "Rabat-Salé-Zemmour-Zaer",
-                      Name = new LocalizedString { Arab = "الرباط سلا زمور زعير", French = "Rabat-Salé-Zemmour-Zaër ", English = "Rabat-Salé-Zemmour-Zaer" },
-                      Ordre = 12,
-                  }
+                      Reference = "Provinces Du Sud",
+                      Name = new LocalizedString { Arab = "", French = "Provinces Du Sud", English = "Provinces Du Sud" }
+                  },
+                    new Region()
+                    {
+                        Reference = "Souss Massa Darâa",
+                        Name = new LocalizedString { Arab = "", French = "Souss Massa Darâa", English = "Souss Massa Darâa" }
+                    }
+                    ,
+                    new Region()
+                    {
+                        Reference = "Centre Sud",
+                        Name = new LocalizedString { Arab = "", French = "Centre Sud", English = "Centre Sud" }
+                    }
+                    ,
+                    new Region()
+                    {
+                        Reference = "Chaouia Tadla",
+                        Name = new LocalizedString { Arab = "", French = "Chaouia Tadla", English = "Chaouia Tadla" }
+                    }
+                    ,
+                    new Region()
+                    {
+                        Reference = "Oriental",
+                        Name = new LocalizedString { Arab = "", French = "Oriental", English = "Oriental" }
+                    }
+                    ,
+                    new Region()
+                    {
+                        Reference = "Centre Nord",
+                        Name = new LocalizedString { Arab = "", French = "Centre Nord", English = "Centre Nord" }
+                    }
+                    ,
+                    new Region()
+                    {
+                        Reference = "Nord Ouest II",
+                        Name = new LocalizedString { Arab = "", French = "Nord Ouest II", English = "Nord Ouest II" }
+                    }
               );
+            context.SaveChanges();
+
+            //Institution
+            Region Region_Nord_Ouest_II = context.Regions.Where(r => r.Reference == "Nord Ouest II").SingleOrDefault();
+            context.Institutions.AddOrUpdate(
+               r => r.Reference,
+               new Institution()
+               {
+                   Reference = "ISMONTIC",
+                   Description = new LocalizedString { Arab = "المعهد المتخصص في الوظيفة الخارجة والتكنولوجيات الجديدة والمعلومات والتواصل", French = "Institut Spécialisé dans les Métiers de l'Offshoring et les Nouvelles Technologies de l'information et de la  Communication", English = "Institute Specialized in Offshoring and New Information and Communication Technologies" }
+                  ,
+                   Name = new LocalizedString { Arab = "ISMONTIC", English = "ISMONTIC", French = "ISMONTIC" },
+                   Address = new LocalizedString { Arab = "شارع القوات المسلحة الملكية، طنجة، المغرب", English = "Boulevard Royal Armed Forces, Tangier, Morocco", French = "Boulevard des Forces Armées Royales, Tanger, Maroc" },
+                   Region = Region_Nord_Ouest_II
+               }
+
+               );
+
             context.SaveChanges();
 
             //Add Default Function 
@@ -469,6 +522,14 @@
                    );
             context.SaveChanges();
 
+           
+            
+          
+
+            //
+            // Test Data
+            //
+
             Function Former = context.Functions.Where(r => r.Reference == "Former").SingleOrDefault();
 
             //staff Add 30 Staff for Test
@@ -480,8 +541,8 @@
                                  {
 
                                      Id = i,
-                                     FirstName = new LocalizedString { Arab = "مدني", French = "Madani", English = "Madani" },
-                                     LastName = new LocalizedString { Arab = "مدني", French = "Madani", English = "Madani" },
+                                     FirstName = new LocalizedString { Arab = "مدني", French = "Madani" + i, English = "Madani" },
+                                     LastName = new LocalizedString { Arab = "مدني", French = "Ali" + i, English = "Madani" },
                                      DateOfBirth = Convert.ToDateTime("02/02/1982"),
                                      CIN = "k45878",
                                      Email = "madani@outloo.fr",
@@ -490,9 +551,9 @@
                                      Cellphone = "063547459",
                                      PhoneNumber = "8987458",
                                      DateRecruitment = Convert.ToDateTime("02/02/2016"),
-                                     Reference = "Madani",
+                                     Reference = "Madani" + i,
                                      Sex = false,
-                                     RegistrationNumber = "k45dl",
+                                     RegistrationNumber = "k45dl" + i,
                                      Cars = null,
                                      Affectations = null,
                                      Function = Former,
@@ -505,25 +566,63 @@
                                  }
 
                                  );
+
             }
-            
-            //Institution
-            context.Institutions.AddOrUpdate(
-               r => r.Reference,
-               new Institution()
-               {
-                   Reference = "ISMONTIC",
-                   Description = new LocalizedString { Arab = "المعهد المتخصص في الوظيفة الخارجة والتكنولوجيات الجديدة والمعلومات والتواصل", French = "Institut Spécialisé dans les Métiers de l'Offshoring et les Nouvelles Technologies de l'information et de la  Communication", English = "Institute Specialized in Offshoring and New Information and Communication Technologies" }
-                  ,
-                   Name = new LocalizedString { Arab = "ISMONTIC", English = "ISMONTIC", French = "ISMONTIC" },
-                   Address = new LocalizedString { Arab = "شارع القوات المسلحة الملكية، طنجة، المغرب", English = "Boulevard Royal Armed Forces, Tangier, Morocco", French = "Boulevard des Forces Armées Royales, Tanger, Maroc" }
-               }
-
-               );
-
-            context.SaveChanges(); 
-
-            //Add 
+            //add default grades
+            context.Grades.AddOrUpdate(
+                r => r.Reference,
+                new Grade()
+                {
+                    Reference = "A",
+                    Description = new LocalizedString { Arab = "A", English = "A", French = "A" }
+                    ,
+                    Name = new LocalizedString { Arab = "كبار المسؤولين التنفيذيين", English = "Senior executives", French = "Cadres supérieur" }
+                }
+                ,
+                 new Grade()
+                 {
+                     Reference = "B",
+                     Description = new LocalizedString { Arab = "B", English = "B", French = "B" }
+                    ,
+                     Name = new LocalizedString { Arab = "الأطر الرئيسية", English = "Main frame", French = "Cadres principaux" }
+                 },
+                  new Grade()
+                  {
+                      Reference = "C",
+                      Description = new LocalizedString { Arab = "C", English = "C", French = "C" }
+                    ,
+                      Name = new LocalizedString { Arab = "الأطر", English = "Frame", French = "Cadres" }
+                  },
+                   new Grade()
+                   {
+                       Reference = "D",
+                       Description = new LocalizedString { Arab = "D", English = "D", French = "D" }
+                    ,
+                        Name= new LocalizedString { Arab = "التحكم الرئيسي", English = "Master's degree", French = "Maitrise principale" }
+                   }
+                   , new Grade()
+                   {
+                       Reference = "E",
+                       Description = new LocalizedString { Arab = "E", English = "E", French = "E" }
+                    ,
+                        Name= new LocalizedString { Arab = "التحكم", English = "Mastery", French = "Maitrise" }
+                   },
+                    new Grade()
+                    {
+                        Reference = "F",
+                        Description = new LocalizedString { Arab = "F", English = "F", French = "F" }
+                    ,
+                        Name = new LocalizedString { Arab = "الأداء الرئيسي ", English = "Main execution", French = "Exécution principale" }
+                    },
+                    new Grade()
+                    {
+                        Reference = "G",
+                        Description = new LocalizedString { Arab = "G", English = "G", French = "G" }
+                    ,
+                        Name = new LocalizedString { Arab = "الأداء", English = "Execution", French = "Exécution" }
+                    }
+                );
+            context.SaveChanges();
         }
     }
 }

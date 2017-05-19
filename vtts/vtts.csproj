@@ -335,6 +335,52 @@
     <Compile Include="Entities\MissionManagement\ThemeCategory.cs" />
     <Compile Include="Entities\ModuleManagement\Precision.cs" />
     <Compile Include="Entities\ModuleManagement\PrecisionContent.cs" />
+    <Compile Include="Entities\ModuleManagement\Prior.cs" />
+    <Compile Include="Entities\ModuleManagement\Resources\PrecisionContent\PrecisionContent.ar.Designer.cs">
+      <DependentUpon>PrecisionContent.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\PrecisionContent\PrecisionContent.fr.Designer.cs">
+      <DependentUpon>PrecisionContent.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\PrecisionContent\PrecisionContent.Designer.cs">
+      <DependentUpon>PrecisionContent.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\Precision\Precision.ar.Designer.cs">
+      <DependentUpon>Precision.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\Precision\Precision.fr.Designer.cs">
+      <DependentUpon>Precision.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\Precision\Precision.Designer.cs">
+      <DependentUpon>Precision.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\Prior\Prior.ar.Designer.cs">
+      <DependentUpon>Prior.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\Prior\Prior.fr.Designer.cs">
+      <DependentUpon>Prior.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\ModuleManagement\Resources\Prior\Prior.Designer.cs">
+      <DependentUpon>Prior.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Entities\SessionManagement\Absence.cs" />
     <Compile Include="Entities\SessionManagement\Resources\TrainingYear\TrainingYear.ar.Designer.cs">
       <DependentUpon>TrainingYear.ar.resx</DependentUpon>
@@ -488,27 +534,16 @@
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Libs\ITextSharp\PdfFile.cs" />
-    <Compile Include="Migrations\201705161542363_Update1.cs" />
-    <Compile Include="Migrations\201705161542363_Update1.Designer.cs">
-      <DependentUpon>201705161542363_Update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705171529098_Up1.cs" />
-    <Compile Include="Migrations\201705171529098_Up1.Designer.cs">
-      <DependentUpon>201705171529098_Up1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\PrintOrderMission\FormPrintOrderMission.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\PrintOrderMission\FormPrintOrderMission.Designer.cs">
       <DependentUpon>FormPrintOrderMission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\PrintOrderMission\ResourceImage.Designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\HeaderImage.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HeaderImage.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Resources\HeaderImage.Designer.cs" />
     <EmbeddedResource Include="Entities\AdvancementManagement\Resources\AdvancementEchelon\AdvancementEchelon.ar.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvancementEchelon.ar.Designer.cs</LastGenOutput>
@@ -689,6 +724,42 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Training.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\PrecisionContent\PrecisionContent.ar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrecisionContent.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\PrecisionContent\PrecisionContent.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrecisionContent.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\PrecisionContent\PrecisionContent.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PrecisionContent.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\Precision\Precision.ar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Precision.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\Precision\Precision.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Precision.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\Precision\Precision.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Precision.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\Prior\Prior.ar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Prior.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\Prior\Prior.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Prior.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ModuleManagement\Resources\Prior\Prior.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Prior.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Entities\SessionManagement\Resources\TrainingYear\TrainingYear.ar.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TrainingYear.ar.Designer.cs</LastGenOutput>
@@ -806,15 +877,10 @@
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705161542363_Update1.resx">
-      <DependentUpon>201705161542363_Update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705171529098_Up1.resx">
-      <DependentUpon>201705171529098_Up1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\PrintOrderMission\FormPrintOrderMission.resx">
       <DependentUpon>FormPrintOrderMission.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\PrintOrderMission\ResourceImage.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -825,10 +891,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\HeaderImage.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HeaderImage.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HeaderImage.resx" />
     <None Include="Entities\AdvancementManagement\AdvancementClassDiagrame.cd" />
     <None Include="Entities\InstitutionManagement\ClassDiagramInstitutions.cd" />
     <None Include="Entities\MissionManagement\MissionClassDiagram.cd" />
@@ -848,10 +911,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PDFs\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Header.png" />
+    <Content Include="Resources\Header.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
